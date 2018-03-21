@@ -1,0 +1,391 @@
+\documentclass[11pt,a4paper,twoside]{article}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+
+
+%\usepackage[wordbk]{songbook} %bez akordů
+\usepackage[chordbk]{songbook} %s akordy
+
+
+
+%\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
+%\usepackage{setspace}
+%\renewcommand{\ChFont}{\fontfamily{\sfdefault} \fontseries{sc}\fontshape{n}\fontsize{7mm}{0mm}\selectfont\setstretch{0.3}} 
+
+
+
+
+%\usepackage[pdftex]{graphicx} % koliduje s watermarkem
+%\usepackage{bookman}
+%cislovani
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{} % smaže aktuální nastavení záhlaví a zápatí
+%\fancyfoot[c]{\bfseries\thepage}                               % zrušení čísel stránek
+%\renewcommand{\headrulewidth}{0pt} % tloušťka linky
+%\renewcommand{\footrulewidth}{3pt}   % patička 
+%\addtolength{\headheight}{1.2pt}% prostor pro záhlaví
+%\fancypagestyle{plain}{
+%\fancyhead{} % na prázdných stránkách nechci záhlaví
+%  \renewcommand{\headrulewidth}{0pt} % ani linku
+%}
+\usepackage[ddmmyyyy,hhmmss]{datetime}
+\renewcommand{\dateseparator}{.}
+
+\usepackage{xcolor}
+
+%\usepackage[printwatermark]{xwatermark}
+%\newwatermark[evenpages,color=blue!20,angle=90,scale=5,xpos=90,ypos=-20]{D R A F T}
+%\newwatermark[allpages,color=blue!20,scale=0.5,xpos=0,ypos=120]{\today\ \currenttime}
+%\newwatermark[oddpages,color=blue!20,angle=90,scale=5,xpos=-80,ypos=-20]{D R A F T}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ulem}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{mathabx}
+\usepackage{wasysym}
+\usepackage{fixltx2e}
+%\usepackage{hyperref}
+\newdimen\supsymwidth
+\newdimen\supsymheight
+\newdimen\tgtsymwidth
+\setbox0=\hbox{$_\bigboxvoid$}
+\supsymwidth=\wd0
+\supsymheight=\ht0
+\setbox0=\hbox{$_\bigovoid$}
+\tgtsymwidth=\wd0
+
+\newcommand{\supsym}[1]{%
+%  \mathrlap{\bigboxvoid}
+  \raisebox{-6pt}{\hbox to \supsymwidth{\hfill{\small#1}\hfill}}
+}
+
+%\newcommand{\target}[2][\relax]{$\supsym{#1}$\uline{#2}}
+\newcommand{\VOLTA}[2][\relax]{\textsubscript{\small#1}\uline{#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{ifthen}
+ 
+\newcommand{\newevenside}{
+	\ifthenelse{\isodd{\thepage}}{\newpage}{
+	\newpage
+        \phantom{placeholder} % doesn't appear on page
+	\thispagestyle{empty} % if want no header/footer
+	\newpage
+	}
+}
+%
+%
+%  nastavení sekcí a jejich stránkování
+%\usepackage{sectsty}
+%\sectionfont{\Huge}
+\usepackage{titlesec}
+\usepackage{needspace}
+\titleformat{\section}
+{\needspace{5cm}\Huge\bfseries}{\thesection}{1ex}{}
+
+%\let\stdsection\section
+%\renewcommand\section{\ifthenelse{\isodd{\thepage}}{\newpage}{}\stdsection}
+
+
+\footskip 0cm
+\unitlength 1mm
+
+\topmargin 0.5cm
+\headheight 0cm
+\headsep 20pt
+\textheight 27.5cm
+\textwidth 15.5cm   %přesáhne maximálně 0.5 cm za okraj   (59 Ví Bůh kolik...)
+\marginparsep 1cm
+\marginparwidth 0cm
+
+\oddsidemargin 5cm
+\evensidemargin 1cm 
+
+
+\pagestyle{empty}
+
+
+
+\usepackage[export]{adjustbox}
+
+
+%--------------------------------------nastavení obsahu
+\newlength\widest
+\settowidth\widest{990.99.}
+\usepackage[]{titletoc}
+\titlecontents{section}[1pc]
+{\addvspace{0pc}}
+{\parbox[t]{\widest}{\hfill\thecontentslabel}
+\hspace{3mm}}
+{}
+{}
+[\addvspace{0pt}]
+%-------------------------------------------------
+
+
+
+%\usepackage{fullpage}
+\leftskip=0cm
+%\usepackage{sectsty}
+%\allsectionsfont{\usefont{OT1}{phv}{bc}{n}\fontsize{28}{1}\selectfont}
+
+
+%\newcommand\uv[1]{\quotedblbase #1\textquotedblleft}%
+\setlength{\parindent}{0cm}
+
+
+
+%opening
+
+\title{TÁBOROVÝ ZPĚVNÍK}
+\author{ROSOMÁK}
+
+\begin{document}
+
+\sffamily
+\huge
+
+%\begin{titlepage}
+
+%\begin{center}
+
+%\parbox{14cm}
+%\ \vfil
+\vspace*{2mm}
+\hspace*{-0.15\textwidth}\includegraphics[width=1.15\textwidth]{titulni.eps}
+\vfil\ 
+
+%\end{titlepage}
+
+\vspace*{3cm}
+\parbox{14cm}{\centering \huge \itshape \bfseries Pane slyš náš hlas \\*
+chcem' tě chválit zas \\*
+za to že máš v péči\\*
+celý svět i nás}
+\vspace*{15cm}
+%\\*\line(1,0){450}
+\\*
+\parbox{14cm}{\centering Vydalo sdružení YMCA -- Jindřichův Hradec \\*
+pro potřeby letních táborů, \the\year \\*
+NEPRODEJNÉ\,!}
+
+\input{songs/apostolska.tex} % 1
+\pagebreak
+\input{songs/bojujte_dal.tex} % 2
+\input{songs/cest_dej.tex} % 3
+\input{songs/dal_prece_nejdeme_sami.tex} % 4
+\includegraphics[width=10cm]{1.eps}
+\vfil
+\input{songs/dekujem_ti_pane_boze.tex} % 5
+\pagebreak
+\input{songs/de_profundis.tex} % 6
+\input{songs/diky.tex} % 7
+\vfil
+\input{songs/do_tvych_starosti.tex} % 8
+\pagebreak
+\input{songs/doufej_v_hospodina.tex} % 9
+\vfil
+\input{songs/duha.tex} % 10
+\pagebreak
+\input{songs/het_bot_ba.tex} % 11
+\vfil
+\input{songs/hosana.tex} % 12
+\input{songs/hrichy.tex} % 13
+\vfil
+\input{songs/hvezda.tex} % 14
+\input{songs/hvezdy_tise_vysly.tex} % 15
+\vfil
+\input{songs/chci_pane_chvalit_te.tex} % 16
+\vfil
+\hspace*{1cm}\includegraphics[width=12cm]{2.eps}
+\vfil
+\input{songs/chvalozpev.tex} % 17
+\input{songs/jak_dobre_a_utesene.tex} % 18
+\pagebreak
+\input{songs/jednou_prijde_smrtka.tex} % 19
+\input{songs/jen_ty_pane_muj.tex} % 20
+\vfil
+\hspace*{4cm}\includegraphics[width=7cm]{3.eps}
+\vfil
+\pagebreak
+\input{songs/jsem_zde_na_zemi_poutnikem.tex} % 21
+\vfil
+\input{songs/kazdy_den.tex} % 22
+\input{songs/kdo_me_z_pout_mych.tex} % 23
+\input{songs/kdo_na_kolenou_kleci.tex} % 24
+\pagebreak
+\input{songs/kdo_stvoril.tex} % 25
+\vfil
+\includegraphics[width=12cm]{4.eps}
+\vfil
+\input{songs/koho_vcelky_chvali.tex} % 26
+\input{songs/kriz.tex} % 27
+
+\input{songs/kumbaja.tex} % 28
+\vfil
+\input{songs/laudato_sii.tex} % 29
+\input{songs/moudrost_mi_pane_davej.tex} % 30
+\pagebreak
+\input{songs/nam_pane_dal_jsi_slovo_sve.tex} % 31
+\vfil
+\input{songs/nekdo_me_vede_za_ruku.tex} % 32
+\includegraphics[width=10cm]{5.eps}
+\pagebreak
+\input{songs/neni_lepsi_na_tom_svete.tex} % 33
+\input{songs/nevim_pane.tex} % 34
+\input{songs/odpust.tex} % 35
+\input{songs/otevrete_brany.tex} % 36
+\hspace*{6cm}\includegraphics[width=4cm]{6.eps}
+\input{songs/pane_slys_nas_hlas.tex} % 37
+\vfil
+\input{songs/pan_buh_nas_ma_vsechny_rad.tex} % 38
+\pagebreak
+\input{songs/plne_ruce_plna_usta_diku.tex} % 39
+\input{songs/posila_na_cestu.tex} % 40
+\input{songs/povim_vam_ted.tex} % 41
+\input{songs/primluvny_zpev.tex} % 42
+\input{songs/ranni_prosba.tex} % 43
+\input{songs/rok_za_rokem.tex} % 44
+\input{songs/rekl_tobe.tex} % 45
+\input{songs/slunce_v_rose_koupalo_se.tex} % 46
+\vfil
+\input{songs/slunicko_lechta_zabky_v_kaluzi.tex} % 47
+\pagebreak
+\input{songs/spoj_nas_v_jedno_pane.tex} % 48
+\input{songs/stado.tex} % 49
+\input{songs/stale_stale.tex} % 50
+\vfil
+\hspace*{3cm}\includegraphics[width=10cm]{7.eps}
+\vfil
+\input{songs/svy_kroky_rozezpivej.tex} % 51
+\vfil
+\hspace*{1cm}\includegraphics[width=7cm]{8.eps}
+\vfil
+\input{songs/tobe_pane_dik.tex} % 52
+\input{songs/tolik_planych_slov.tex} % 53
+\input{songs/tva_svoboda.tex} % 54
+\vfil
+\input{songs/uz_k_nam_prisel_bracha_den.tex} % 55
+\pagebreak
+\input{songs/uz_mi_oci_tizi_sen.tex} % 56
+\vfil
+\hspace*{1cm}\includegraphics[width=10cm]{9.eps}
+\vfil
+\input{songs/uz_svita_jasny_bily_den.tex} % 57
+\vspace*{-0.5cm}\hspace*{7cm}\includegraphics[width=7cm]{10.eps}\vspace*{-1cm}
+\vfil
+\input{songs/ved_mne_dal.tex} % 58
+\pagebreak
+\input{songs/vi.tex} % 59
+\input{songs/vic,_nez_oko_spatrit_smi.tex} % 60
+\vfil
+\hspace*{2cm}\includegraphics[width=10cm]{11.eps}
+\vfil
+\pagebreak
+\input{songs/vlak_bozi.tex} % 61
+\input{songs/vstoupi_mojzis.tex} % 62
+\pagebreak
+\input{songs/zapadlo_jiz_slunce.tex} % 63
+  \pagebreak
+\input{songs/zalm_150.tex} % 64
+\pagebreak
+\input{songs/krasny_je_vzduch.tex} % 65
+\vfil
+\hspace*{2cm}\includegraphics[width=10cm]{12.eps}
+\vfil
+\input{songs/pocestny.tex} % 66
+\vfil
+\input{songs/jednou_budem_dal.tex} % 67
+\pagebreak
+\input{songs/stary_pribeh.tex} % 68
+\vspace*{-1.8cm}\hspace*{6cm}\includegraphics[width=5cm]{13.eps}
+\input{songs/kladivo.tex} % 69
+\input{songs/ryl_jen_celej_den_ryl.tex} % 70
+\pagebreak
+\vspace*{-1cm}\hspace*{6cm}\includegraphics[height=4.5cm]{14.eps}\vspace*{-3,5cm}
+\input{songs/jonatan.tex} % 71
+\input{songs/severni_vitr.tex} % 72
+\hspace*{5cm}\includegraphics[width=6cm]{15.eps}
+\input{songs/neni_nutno.tex} % 73
+\pagebreak
+\input{songs/mravenci_ukolebavka.tex} % 74
+\vfil
+\hspace*{1cm}\includegraphics[width=11cm]{16.eps}
+\vfil
+\pagebreak
+\input{songs/volame_slunicko.tex} % 75
+\vfil
+\hspace*{2cm}\includegraphics[width=11cm]{17.eps}
+\vfil
+\pagebreak
+\input{songs/hejna_vcel.tex} % 76
+\pagebreak
+\input{songs/strom.tex} % 77
+\input{songs/franky_dlouhan.tex} % 78
+\input{songs/doney_gal.tex} % 79
+\vfil
+\hspace*{2cm}\includegraphics[width=10cm]{18.eps}
+\vfil
+\input{songs/zajici.tex} % 80
+\input{songs/dokud_se_zpiva.tex} % 81
+\input{songs/skautska_vecerka.tex} % 82
+\pagebreak
+\input{songs/hora_rip.tex} % 83
+\input{songs/praminek_vlasu.tex} % 84
+\input{songs/konci_divadlo.tex} % 85
+\input{songs/skrhola.tex} % 86
+\pagebreak
+\input{songs/kos.tex} % 87
+\input{songs/proc_se_lidi_nemaj_radi.tex} % 88
+\input{songs/marniva_sestrenice.tex} % 89
+\input{songs/kam_se_podel_asi.tex} % 90
+\input{songs/sup_a_zluva.tex} % 91
+\input{songs/sadlo_na_chleba.tex} % 92
+\pagebreak
+\input{songs/pisnicka_o_davidovi.tex} % 93
+\input{songs/david_a_golias.tex} % 94
+\input{songs/bratry_sestry_potkavam.tex} % 95
+\pagebreak
+\input{songs/sneci_blues.tex} % 96
+\pagebreak
+\input{songs/to_ja_o_pane_muj.tex} % 97
+\pagebreak
+\input{songs/krajina_posedla_tmou.tex} % 98
+\input{songs/hau_bilou_plani.tex} % 99
+\input{songs/pisen_proti_trudnomyslnosti.tex} % 100
+\pagebreak
+\input{songs/hymna_2010.tex} % 101
+\newevenside
+\input{songs/prorok_elias_(hymna_2011).tex} % 102
+\input{songs/nejsi_sam_svuj.tex} % 103
+\input{songs/neboj_se.tex} % 104
+\input{songs/stale_jen_chceme_zpivat.tex} % 105
+\input{songs/zpivej_panu_haleluja.tex} % 106
+\vfil
+\input{songs/kristus_pan.tex} % 107
+\input{songs/at_dobry_buh.tex} % 108
+\vfil
+\input{songs/vzdam_celym_srdcem_svym.tex} % 109
+\input{songs/muj_buh_je_muj_stit.tex} % 110
+\pagebreak
+\input{songs/hymna_2012.tex} % 111
+\input{songs/abraham_(hymna_2013).tex} % 112
+\input{songs/od_japoncu_k_jakubovi(hymna_2014).tex} % 113
+\input{songs/babylon.tex} % 114
+\input{songs/tri_mladenci.tex} % 115
+\pagebreak
+\input{songs/svita_novej_den.tex} % 116
+\input{songs/babylon_a_my_(hymna_2015).tex} % 117
+
+\pagebreak ~ % empty page
+\cleardoublepage
+\pagestyle{empty}
+\mbox{}
+
+\tableofcontents 
+
+\end{document}
