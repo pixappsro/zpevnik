@@ -1,0 +1,479 @@
+\documentclass[10pt,a4paper,twoside]{article}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[top=1.5cm,bottom=3cm,inner=4.5cm,outer=1.5cm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+
+
+\usepackage{ifmtarg}% http://ctan.org/pkg/ifmtarg
+\usepackage[chorded,onesongcolumn,noshading]{songs}
+\newindex{titleidx}{titleidx}
+
+\makeatletter
+  \newcommand\HUGE{\@setfontsize\Huge{38}{47}}
+  \newcommand\slokasize{\@setfontsize\Huge{20}{26}\sffamily}
+  \newcommand\cislosize{\@setfontsize\Huge{20}{26}\sffamily}
+\makeatother
+
+
+\setlength\baselineadj{-0.5\baselineskip} % menší řádkování u slok bez akordů
+\setlength\versesep{8pt}
+\renewcommand\printchord[1]{{\LARGE\sffamily\color{blue!70!black}#1}}
+
+\renewcommand{\chorusfont}{\mdseries\slokasize}
+\renewcommand{\lyricfont}{\mdseries\slokasize}
+%\renewcommand{\printversenum}[1]{\bfseries\LARGE#1.\ } 
+\setlength{\versenumwidth}{1cm}
+
+\setlength{\sbarheight}{0mm}% tloušťka vodorovné čáry
+\newlength{\TLOUSTKA}
+\setlength{\TLOUSTKA}{0.6mm}% tloušťka vodorovné čáry
+
+
+\renewcommand{\stitlefont}{\bfseries\HUGE}
+\renewcommand{\thesongnum}{\arabic{songnum}}
+%\renewcommand{\printsongnum}[1]{{~\hspace*{1cm}\bfseries\cislosize#1\ }} % číslo u nadpisu
+\renewcommand{\printsongnum}[1]{{\begin{tikzpicture}[remember picture, overlay]\draw [line join = round,line width = \sbarheight](0,0.2) -- (1,-1.5) -- (2,0.2)--cycle;\node at (1,-0.3) {\bfseries\cislosize#1};\end{tikzpicture}\ }} % číslo u nadpisu v trojúhelníku
+\renewcommand{\printsongnum}[1]{{%
+\begin{tikzpicture}[remember picture, overlay]
+    \draw (1,-0.3) node[] (stred) {};
+
+    \node at (stred) {\bfseries\cislosize#1};
+\draw[line join = round,line width = \TLOUSTKA] (1,-0.3) circle[radius=0.5, ];
+    \foreach \angle in { 0,45,...,359  }
+    {
+        \draw [rotate around={\angle:(stred.center)}, line join = round,line width = \TLOUSTKA]
+            ($(stred.center) + (0.5,0) $)
+                   -- +(0,-0.15)
+                   -- +(0.3,0)
+                   -- +(0,0.15) -- cycle;
+     }
+\draw[line join = round,line width = \TLOUSTKA, line cap=round] plot [smooth, tension=1] coordinates {($(stred.center) + (0.46,0.2) $) (0.26\hsize,0.45) (0.6\hsize,0.05) ($(\hsize,0.35)+(-1,0)$)};
+%\foreach \Point in {(0.26\hsize,0.45),(0.6\hsize,0.05)} \node at \Point {\textbullet};
+\end{tikzpicture}%
+\ }} % číslo u nadpisu 
+
+\setlength{\songnumwidth}{2cm}% odsazení nadpisu
+
+
+\makeatletter
+%\newcommand\CARAZACATEK[2]{%
+%%  \hrule\@height#1\@width#2%
+%\begin{tikzpicture}[line width = #1]
+%   \draw [line join = round] (#2,0) -- (0,0) -- (1,-1.5) -- (2,0);
+%\end{tikzpicture}
+%}
+\newcommand\CARAZACATEK[2]{\hrule\@height#1\@width#2}
+\renewcommand\CARAZACATEK[2]{}% odstranění čáry na začátku písničky
+
+%\newcommand\CARAZACATEK[2]{\hbox{\tikz[remember picture, overlay]\draw [line join = round,line width = #1] (#2,0) -- (0,0);}\kern0pt\relax}
+\newcommand\CARAKONEC{%\
+  \ifdim\sbarheight>\z@%
+    \nobreak\vskip2\p@\@plus\p@%
+    \nointerlineskip%
+    \hbox{\vrule\@height\sbarheight\@width\hsize}%
+  \fi%
+}
+\renewcommand\CARAKONEC{\vspace{15mm}}% odstranění čáry na konci písničky, přidání mezery za písničku
+
+
+\renewcommand\SB@endsong{%
+  \ifSB@insong%
+      \ifSB@inverse\SB@erreov\endverse\fi%
+      \ifSB@inchorus\SB@erreoc\endchorus\fi%
+      \global\SB@skip\versesep%
+      \unskip%
+      \ifrepchorus\ifvoid\SB@chorusbox\else%
+        \ifSB@prevverse\ifvnumbered%
+          \marks\SB@cmarkclass{\SB@lastcmark}%
+        \fi\fi%
+      \fi\fi%
+    \endgroup\egroup%
+    \begingroup%
+      \ifnum\SB@numcols>\z@%
+        \hsize\ifpagepreludes\textwidth\else\SB@colwidth\fi%
+      \fi%
+      \leftskip\z@skip\rightskip\z@skip%
+      \parfillskip\@flushglue\parskip\z@skip\parindent\z@%
+      \global\setbox\SB@envbox\vbox{%
+        \songmark%
+        \unvbox\SB@songwrites%
+        \ifpagepreludes\else\ifdim\sbarheight>\z@%
+          \CARAZACATEK{\sbarheight}{\hsize}% ====================== vodorovná čára na začátku písničky - pozor kreslí se přes čáru na konci písničky !!!
+          \nobreak\vskip5\p@\relax%
+        \fi\fi%
+        \resettitles%
+        \begingroup%
+          \songtarget{\ifnum\c@section=\z@1\else2\fi}%
+                     {song\theSB@songsnum-\thesongnum}%
+        \endgroup%
+        \vbox{\makeprelude}%
+        \nobreak\vskip\SB@skip%
+        \vskip\afterpreludeskip\relax%
+      }%
+      \ifnum\SB@numcols>\z@\hsize\SB@colwidth\fi%
+      \global\setbox\SB@songbox\vbox{%
+        \ifpagepreludes\else\unvbox\SB@envbox\fi%
+        \unvbox\SB@songbox%
+        \nobreak\vskip\SB@skip%
+        \vskip\beforepostludeskip\relax%
+        \nointerlineskip%
+        \vbox{\makepostlude}%
+        \CARAKONEC
+        
+      }%
+    \endgroup%
+    \SB@insongfalse%
+    \edef\SB@sgroup{\thesongnum}%
+    \global\SB@groupcnt\z@%
+    \ifpagepreludes\SB@submitenv\fi%
+    \SB@submitsong%
+    \ifnum\SB@grouplvl=\z@\let\SB@sgroup\@empty\fi%
+    \stepcounter{songnum}%
+  \else%
+    \ifSB@intersong\SB@erreor\SB@closeall%
+    \else\SB@erreot\fi%
+  \fi%
+}
+
+
+\makeatother
+
+
+\begingroup
+  \lccode`\~=`\# % allow using # without \#
+  \lowercase{\endgroup
+    \def~{\shrp}%
+  }
+\begingroup
+  \lccode`\~=`\& % allow using & without \&
+  \lowercase{\endgroup
+    \def~{\flt}%
+  }
+\def\Ch{%
+  \begingroup
+  \catcode`\#=\active
+  \catcode`\&=\active
+  \ChX
+}
+\makeatletter
+  \newcommand{\ChX}[2]{%
+    \@ifmtarg{#2}{{\[#1]~}}{\[#1]#2}%\nolyrics posune akordy na řádek textu
+    \endgroup}
+\makeatother
+
+\usepackage{enumitem,refcount}
+\newcommand{\KONEC}{}
+\usepackage{suffix} %asterisk versions
+
+\newcommand{\SLOKA}{%
+      \KONEC%
+      \beginverse
+      \let\KONEC\endverse%
+      }
+\WithSuffix\newcommand\SLOKA*{%
+      \KONEC%
+      \beginverse*
+      \let\KONEC\endverse%
+      }
+\newcommand{\REFREN}{%
+      \KONEC%
+      \setlength{\cbarwidth}{ \TLOUSTKA}
+      \beginchorus%
+      \let\KONEC\endchorus%
+      }
+\newcommand{\INTERM}{%
+
+      \KONEC%
+      \message{ ------------ Intersong !!! \KONEC}%
+      \setlength{\cbarwidth}{0pt}
+      \beginchorus
+      \let\KONEC\endchorus%
+      }
+\newcommand{\REFRENHRAJ}{\REFREN Ref.} 
+
+
+\newcommand{\OBRAZEK}[4]{%
+  \begin{intersong}%
+  #1\centering%
+  \includegraphics[width=#2\hsize]{images/#3.eps}%
+  #4%
+  \end{intersong}}
+\newcommand{\PISNICKA}[1]{\input{songs/#1.tex}}
+\newcommand{\NEWPAGE}{%
+  \begin{intersong}%
+  \newpage%
+  \end{intersong}}
+
+
+\makeatletter%
+  \newcommand{\@hspacestar}[1]{}%
+  \newcommand{\@hspacenostar}[1]{}%
+  \renewcommand{\hspace}{\@ifstar{\@hspacestar}{\@hspacenostar}}%
+\makeatother%
+
+\newenvironment{TEXT}[1]
+  {%
+  \beginsong{#1}%TODO kouknout jak je definován item, že bere až do následujícího item
+  \def\rlap{\nolyrics}% redefine rlap
+  \renewcommand{\KONEC}{}
+  \newcommand\NL{}
+  }
+  {\KONEC\endsong}
+%  \renewcommand\item[2][]{\beginverse ---##2--- \endverse}%
+
+
+
+
+%\usepackage[pdftex]{graphicx} % koliduje s watermarkem
+%\usepackage{bookman}
+%cislovani
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{} % smaže aktuální nastavení záhlaví a zápatí
+%\fancyfoot[c]{\bfseries\thepage}                               % zrušení čísel stránek
+%\renewcommand{\headrulewidth}{0pt} % tloušťka linky
+%\renewcommand{\footrulewidth}{3pt}   % patička 
+%\addtolength{\headheight}{1.2pt}% prostor pro záhlaví
+%\fancypagestyle{plain}{
+%\fancyhead{} % na prázdných stránkách nechci záhlaví
+%  \renewcommand{\headrulewidth}{0pt} % ani linku
+%}
+\usepackage[ddmmyyyy,hhmmss]{datetime}
+\renewcommand{\dateseparator}{}
+\renewcommand{\timeseparator}{}
+\usepackage{tikz}
+
+\usepackage{xcolor}
+
+%\usepackage[printwatermark]{xwatermark}
+%\newwatermark[evenpages,color=blue!20,angle=90,scale=5,xpos=90,ypos=-20]{D R A F T}
+%\newwatermark[allpages,color=blue!20,scale=0.5,xpos=0,ypos=120]{\today\ \currenttime}
+%\newwatermark[oddpages,color=blue!20,angle=90,scale=5,xpos=-80,ypos=-20]{D R A F T}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ulem}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{mathabx}
+\usepackage{wasysym}
+\usepackage{fixltx2e}
+%\usepackage{hyperref}
+\newdimen\supsymwidth
+\newdimen\supsymheight
+\newdimen\tgtsymwidth
+%\setbox0=\hbox{$_\bigboxvoid$}
+\supsymwidth=\wd0
+\supsymheight=\ht0
+%\setbox0=\hbox{$_\bigovoid$}
+\tgtsymwidth=\wd0
+
+\newcommand{\supsym}[1]{%
+%  \mathrlap{\bigboxvoid}
+  \raisebox{-6pt}{\hbox to \supsymwidth{\hfill{\small#1}\hfill}}
+}
+
+%\newcommand{\target}[2][\relax]{$\supsym{#1}$\uline{#2}}
+\newcommand{\VOLTA}[2][\relax]{\textsubscript{\small#1}\uline{#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{ifthen}
+ 
+\newcommand{\newevenside}{
+	\ifthenelse{\isodd{\thepage}}{\newpage}{
+	\newpage
+        \phantom{placeholder} % doesn't appear on page
+	\thispagestyle{empty} % if want no header/footer
+	\newpage
+	}
+}
+%
+%
+%  nastavení sekcí a jejich stránkování
+%\usepackage{sectsty}
+%\sectionfont{\Huge}
+\usepackage{titlesec}
+\usepackage{needspace}
+\titleformat{\section}
+{\needspace{5cm}\Huge\bfseries}{}{1ex}{\thesection ~}
+
+%\let\stdsection\section
+%\renewcommand\section{\ifthenelse{\isodd{\thepage}}{\newpage}{}\stdsection}
+
+
+\footskip 0cm
+\unitlength 1mm
+
+%\topmargin 0.5cm
+%\headheight 0cm
+%\headsep 20pt
+%\textheight 27.5cm
+%\textwidth 15.5cm   %přesáhne maximálně 0.5 cm za okraj   (59 Ví Bůh kolik...)
+%\marginparsep 1cm
+%\marginparwidth 0cm
+
+%\oddsidemargin 5cm
+%\evensidemargin 1cm 
+
+
+\pagestyle{empty}
+
+
+
+\usepackage[export]{adjustbox}
+
+
+%--------------------------------------nastavení obsahu
+\newlength\widest
+\settowidth\widest{990.99.}
+\usepackage[]{titletoc}
+\titlecontents{section}[1pc]
+{\addvspace{0pc}}
+{\parbox[t]{\widest}{\hfill\thecontentslabel}
+\hspace{3mm}}
+{}
+{}
+[\addvspace{0pt}]
+%-------------------------------------------------
+
+
+
+%\usepackage{fullpage}
+\leftskip=0cm
+%\usepackage{sectsty}
+%\allsectionsfont{\usefont{OT1}{phv}{bc}{n}\fontsize{28}{1}\selectfont}
+
+
+%\newcommand\uv[1]{\quotedblbase #1\textquotedblleft}%
+\setlength{\parindent}{0cm}
+
+
+
+%opening
+
+\title{TÁBOROVÝ ZPĚVNÍK}
+\author{MINIVLČICE}
+
+\begin{document}
+
+\sffamily
+\HUGE
+
+
+
+\begin{songs}{titleidx}
+\PISNICKA{dal_prece_nejdeme_sami} % 
+\OBRAZEK{\vfill}{0.9}{dal_prece_nejdeme_sami}{}
+% Ha šalom
+\PISNICKA{het_bot_ba} % 
+\NEWPAGE
+\PISNICKA{dekujem_ti_pane_boze} %
+\OBRAZEK{\vfill}{0.9}{dekujem_ti_pane_boze}{}
+\PISNICKA{diky} %
+\OBRAZEK{\vfill}{0.4}{diky}{}
+\PISNICKA{do_tvych_starosti} %
+
+\PISNICKA{hvezdy_tise_vysly} % 
+\OBRAZEK{\vfill}{0.4}{hvezdy_tise_vysly}{}
+\PISNICKA{zapadlo_jiz_slunce}
+\PISNICKA{kazdy_den} % 
+\PISNICKA{laudato_sii} %
+\OBRAZEK{\vfill}{0.4}{laudato_sii}{}
+\PISNICKA{kdo_stvoril} % 
+\OBRAZEK{\vfill}{0.4}{kdo_stvoril}{}
+\PISNICKA{koho_vcelky_chvali} %
+\OBRAZEK{\vfill}{0.4}{koho_vcelky_chvali}{}
+\PISNICKA{moudrost_mi_pane_davej} %
+\OBRAZEK{\vfill}{0.4}{moudrost_mi_pane_davej}{}
+% Pán Bůh nás má všechny rád
+\PISNICKA{nekdo_me_vede_za_ruku} % 
+\OBRAZEK{\vfill}{0.4}{nekdo_me_vede_za_ruku}{}
+\PISNICKA{neni_lepsi_na_tom_svete} %
+\OBRAZEK{\vfill}{0.4}{neni_lepsi_na_tom_svete}{}
+\PISNICKA{pane_slys_nas_hlas} % 
+\PISNICKA{rok_za_rokem} % 44
+\PISNICKA{slunce_v_rose_koupalo_se} %
+\PISNICKA{stary_pribeh} %
+\PISNICKA{rekl_tobe} %
+\PISNICKA{skautska_vecerka} %
+\PISNICKA{uz_mi_oci_tizi_sen} %
+\PISNICKA{vlak_bozi} %
+\PISNICKA{uz_k_nam_prisel_bracha_den} %
+\PISNICKA{uz_svita_jasny_bily_den} %
+\PISNICKA{za_maminku_za_tatinka} % Za maminku za tatínka budem děkovat
+\PISNICKA{hosana} %
+\PISNICKA{zalm_150} %  
+% Housenka
+\PISNICKA{duha} %
+% Můj Bůh je
+% Maličký
+\PISNICKA{hau_bilou_plani} % 
+\PISNICKA{hlavne_ze_jsme_na_vzduchu} % Hlavně že jsme na vzduchu
+\PISNICKA{brum_brum_brum} % Brum brum brum
+\PISNICKA{david_a_golias} % 
+\PISNICKA{ho_ho_watanay}% Ho ho watanay
+\PISNICKA{kaca_nasla_ptace}% Káča našla práče
+\input{songs/honky_tonky_blues}% Honky tonky blues
+\PISNICKA{jonatan} % 
+\PISNICKA{kdyby_byl_bavorov}% Kdyby byl bavorov
+\PISNICKA{kos} %
+\PISNICKA{kdyz_jde_maly_bobr_spat} % Když jse malý bobr spát
+\PISNICKA{konci_divadlo} %
+\PISNICKA{krasny_je_vzduch} % 
+\PISNICKA{nezachazej_slunce} % Nezacházej slunce
+\PISNICKA{mravenci_ukolebavka} %
+\PISNICKA{neni_nutno} %
+\PISNICKA{povim_vam_ted} %
+\PISNICKA{sneci_blues} %
+\PISNICKA{sadlo_na_chleba} %
+\PISNICKA{severni_vitr} %
+\PISNICKA{tisic_mil}% Tisíc mil
+\PISNICKA{zajici} %
+\PISNICKA{tri_citronky}% Tři citronky
+\PISNICKA{volame_slunicko} %
+\PISNICKA{usnul_jiz_cely_nas_dum}% Usnul již celý náš dům
+\PISNICKA{kolik_je_na_svete}% Kolik je na světě
+\PISNICKA{muz_moudry}% Muž moudrý
+\PISNICKA{pampelisky} % Pambelišky
+\PISNICKA{ovecka_kudrnata}% Ovečka kudrnatá
+\PISNICKA{slunicka}% Sluníčka
+% U zeléné přesličky
+% Proč svítí sluníčko
+% Kdo je pánem džungle
+% Dům na skále
+\PISNICKA{banany} % Banány
+\PISNICKA{kocabka}% Kocábka
+\PISNICKA{vecernicek} % Večerníček
+% Podobenství o zrnu a koukolu
+% Ježci
+\PISNICKA{vceli_medvidci} % Včelí medvídci
+\PISNICKA{o_nas_mily_boze}% Broučci
+\PISNICKA{andele}% Andělé /// budíčková??? http://zpevniky.casd.cz/zpevniky/zpev5/090.jpg
+\PISNICKA{kdyz_mas_radost}% Když máš radost
+% -----Píseň osamělé hory
+\PISNICKA{moudrost_medvedi_2000}% Moudrost medvědí (2000)
+\PISNICKA{pod_dubem_za_dubem}% Pod dubem za dubem (2005)
+% Chválím tě země má 
+\PISNICKA{bratre_kubo}% Bratře Kubo (2008)
+\PISNICKA{pametnik}% Pamětník (2009)
+\PISNICKA{hymna_minivlcice_2010} % Hymna 2010
+\PISNICKA{hymna_minivlcice_2011}% Hymna 2011
+\PISNICKA{pohadkova_hymna_2012}% Kočičí kluci (2012)
+\PISNICKA{ostrov_tajemny}% Ostrov tajemný (2013)
+\PISNICKA{indianska_hymna}% Indiánská hymna (2014)
+\PISNICKA{hymna_trpasliku}% Hymna trpaslíků (2015)
+\PISNICKA{dlouha_je_pout}% Dlouhá je pouť (2016)
+\PISNICKA{kolem_sveta_pojedeme}% Kolem světa (2017)
+\PISNICKA{asterix_obelix_kleopatra}% Hymna 2018
+\PISNICKA{posila_na_cestu}% K svobodě je dlouhé putování
+\PISNICKA{ctyrlistek_v_pohadce}
+
+
+\showindex{Obsah}{titleidx}
+\end{songs}
+
+\end{document}

@@ -8,12 +8,21 @@
 
 
 
-%\usepackage[T1]{fontenc}
-%\usepackage{lmodern}
-%\usepackage{setspace}
-%\renewcommand{\ChFont}{\fontfamily{\sfdefault} \fontseries{sc}\fontshape{n}\fontsize{7mm}{0mm}\selectfont\setstretch{0.3}} 
+\renewcommand{\ChFont}{\fontfamily{\sfdefault} \fontseries{bx}\fontshape{n}\fontsize{6mm}{0mm}\selectfont} 
 
-
+%%%%%%%%%%%%%%%%%
+\usepackage{enumitem,refcount}
+\newcommand{\NADPIS}[1]{\section{#1}}
+\newenvironment{TEXT}[1]
+  {\NADPIS{#1}%
+  \def\SLOKA{\item}
+  \def\REFREN{\item[Ref.:]}
+  \def\REFRENHRAJ{\item[Ref.]\,}
+  \def\NL{\\*}
+  \begin{enumerate}%
+  }
+  {\end{enumerate}}
+%%%%%%%%%%%%%%%%%
 
 
 %\usepackage[pdftex]{graphicx} % koliduje s watermarkem
@@ -31,7 +40,9 @@
 %  \renewcommand{\headrulewidth}{0pt} % ani linku
 %}
 \usepackage[ddmmyyyy,hhmmss]{datetime}
-\renewcommand{\dateseparator}{.}
+\renewcommand{\dateseparator}{}
+\renewcommand{\timeseparator}{}
+\usepackage{tikz}
 
 \usepackage{xcolor}
 
@@ -85,7 +96,7 @@
 \usepackage{titlesec}
 \usepackage{needspace}
 \titleformat{\section}
-{\needspace{5cm}\Huge\bfseries}{\thesection}{1ex}{}
+{\needspace{5cm}\Huge\bfseries}{}{1ex}{\thesection ~}
 
 %\let\stdsection\section
 %\renewcommand\section{\ifthenelse{\isodd{\thepage}}{\newpage}{}\stdsection}
@@ -156,7 +167,11 @@
 %\parbox{14cm}
 %\ \vfil
 \vspace*{2mm}
-\hspace*{-0.15\textwidth}\includegraphics[width=1.15\textwidth]{titulni.eps}
+\hspace*{-0.15\textwidth}
+\begin{tikzpicture}[remember picture,overlay]
+\node at (165mm,-1.5mm) {\tiny ver.\yyyymmdddate\today\currenttime};
+\end{tikzpicture}
+\includegraphics[width=1.15\textwidth]{images/titulni.eps}
 \vfil\ 
 
 %\end{titlepage}
@@ -178,17 +193,17 @@ NEPRODEJNÉ\,!}
 \input{songs/bojujte_dal.tex} % 2
 \input{songs/cest_dej.tex} % 3
 \input{songs/dal_prece_nejdeme_sami.tex} % 4
-\includegraphics[width=10cm]{1.eps}
-\vfil
+\includegraphics[width=8cm]{images/1.eps}
+%\vfil
 \input{songs/dekujem_ti_pane_boze.tex} % 5
-\pagebreak
+%\pagebreak
 \input{songs/de_profundis.tex} % 6
 \input{songs/diky.tex} % 7
 \vfil
 \input{songs/do_tvych_starosti.tex} % 8
 \pagebreak
 \input{songs/doufej_v_hospodina.tex} % 9
-\vfil
+%\vfil
 \input{songs/duha.tex} % 10
 \pagebreak
 \input{songs/het_bot_ba.tex} % 11
@@ -201,7 +216,7 @@ NEPRODEJNÉ\,!}
 \vfil
 \input{songs/chci_pane_chvalit_te.tex} % 16
 \vfil
-\hspace*{1cm}\includegraphics[width=12cm]{2.eps}
+\hspace*{1cm}\includegraphics[width=12cm]{images/2.eps}
 \vfil
 \input{songs/chvalozpev.tex} % 17
 \input{songs/jak_dobre_a_utesene.tex} % 18
@@ -209,43 +224,46 @@ NEPRODEJNÉ\,!}
 \input{songs/jednou_prijde_smrtka.tex} % 19
 \input{songs/jen_ty_pane_muj.tex} % 20
 \vfil
-\hspace*{4cm}\includegraphics[width=7cm]{3.eps}
+\hspace*{4cm}\includegraphics[width=7cm]{images/3.eps}
 \vfil
 \pagebreak
 \input{songs/jsem_zde_na_zemi_poutnikem.tex} % 21
-\vfil
+%\vfil
 \input{songs/kazdy_den.tex} % 22
+\vfil
+\pagebreak
 \input{songs/kdo_me_z_pout_mych.tex} % 23
 \input{songs/kdo_na_kolenou_kleci.tex} % 24
 \pagebreak
 \input{songs/kdo_stvoril.tex} % 25
 \vfil
-\includegraphics[width=12cm]{4.eps}
+\includegraphics[width=12cm]{images/4.eps}
 \vfil
 \input{songs/koho_vcelky_chvali.tex} % 26
 \input{songs/kriz.tex} % 27
-
+\vfil
 \input{songs/kumbaja.tex} % 28
 \vfil
 \input{songs/laudato_sii.tex} % 29
 \input{songs/moudrost_mi_pane_davej.tex} % 30
-\pagebreak
+
 \input{songs/nam_pane_dal_jsi_slovo_sve.tex} % 31
 \vfil
 \input{songs/nekdo_me_vede_za_ruku.tex} % 32
-\includegraphics[width=10cm]{5.eps}
+\includegraphics[width=8cm]{images/5.eps}
 \pagebreak
 \input{songs/neni_lepsi_na_tom_svete.tex} % 33
 \input{songs/nevim_pane.tex} % 34
 \input{songs/odpust.tex} % 35
 \input{songs/otevrete_brany.tex} % 36
-\hspace*{6cm}\includegraphics[width=4cm]{6.eps}
+\hspace*{2cm}\includegraphics[width=3cm]{images/6.eps}
 \input{songs/pane_slys_nas_hlas.tex} % 37
 \vfil
 \input{songs/pan_buh_nas_ma_vsechny_rad.tex} % 38
 \pagebreak
 \input{songs/plne_ruce_plna_usta_diku.tex} % 39
 \input{songs/posila_na_cestu.tex} % 40
+\vfil
 \input{songs/povim_vam_ted.tex} % 41
 \input{songs/primluvny_zpev.tex} % 42
 \input{songs/ranni_prosba.tex} % 43
@@ -259,11 +277,11 @@ NEPRODEJNÉ\,!}
 \input{songs/stado.tex} % 49
 \input{songs/stale_stale.tex} % 50
 \vfil
-\hspace*{3cm}\includegraphics[width=10cm]{7.eps}
+\hspace*{3cm}\includegraphics[width=10cm]{images/7.eps}
 \vfil
 \input{songs/svy_kroky_rozezpivej.tex} % 51
 \vfil
-\hspace*{1cm}\includegraphics[width=7cm]{8.eps}
+\hspace*{1cm}\includegraphics[width=7cm]{images/8.eps}
 \vfil
 \input{songs/tobe_pane_dik.tex} % 52
 \input{songs/tolik_planych_slov.tex} % 53
@@ -273,17 +291,17 @@ NEPRODEJNÉ\,!}
 \pagebreak
 \input{songs/uz_mi_oci_tizi_sen.tex} % 56
 \vfil
-\hspace*{1cm}\includegraphics[width=10cm]{9.eps}
+\hspace*{1cm}\includegraphics[width=10cm]{images/9.eps}
 \vfil
 \input{songs/uz_svita_jasny_bily_den.tex} % 57
-\vspace*{-0.5cm}\hspace*{7cm}\includegraphics[width=7cm]{10.eps}\vspace*{-1cm}
+\vspace*{-0.5cm}\hspace*{7cm}\includegraphics[width=7cm]{images/10.eps}\vspace*{-1cm}
 \vfil
 \input{songs/ved_mne_dal.tex} % 58
 \pagebreak
 \input{songs/vi.tex} % 59
 \input{songs/vic,_nez_oko_spatrit_smi.tex} % 60
 \vfil
-\hspace*{2cm}\includegraphics[width=10cm]{11.eps}
+\hspace*{2cm}\includegraphics[width=10cm]{images/11.eps}
 \vfil
 \pagebreak
 \input{songs/vlak_bozi.tex} % 61
@@ -295,31 +313,31 @@ NEPRODEJNÉ\,!}
 \pagebreak
 \input{songs/krasny_je_vzduch.tex} % 65
 \vfil
-\hspace*{2cm}\includegraphics[width=10cm]{12.eps}
+\hspace*{2cm}\includegraphics[width=10cm]{images/12.eps}
 \vfil
 \input{songs/pocestny.tex} % 66
 \vfil
 \input{songs/jednou_budem_dal.tex} % 67
 \pagebreak
 \input{songs/stary_pribeh.tex} % 68
-\vspace*{-1.8cm}\hspace*{6cm}\includegraphics[width=5cm]{13.eps}
+\vspace*{-1.8cm}\hspace*{6cm}\includegraphics[width=5cm]{images/13.eps}
 \input{songs/kladivo.tex} % 69
 \input{songs/ryl_jen_celej_den_ryl.tex} % 70
 \pagebreak
-\vspace*{-1cm}\hspace*{6cm}\includegraphics[height=4.5cm]{14.eps}\vspace*{-3,5cm}
+\vspace*{-1cm}\hspace*{6cm}\includegraphics[height=4.5cm]{images/14.eps}\vspace*{-3,5cm}
 \input{songs/jonatan.tex} % 71
 \input{songs/severni_vitr.tex} % 72
-\hspace*{5cm}\includegraphics[width=6cm]{15.eps}
+\hspace*{5cm}\includegraphics[width=6cm]{images/15.eps}
 \input{songs/neni_nutno.tex} % 73
 \pagebreak
 \input{songs/mravenci_ukolebavka.tex} % 74
 \vfil
-\hspace*{1cm}\includegraphics[width=11cm]{16.eps}
+\hspace*{1cm}\includegraphics[width=11cm]{images/16.eps}
 \vfil
 \pagebreak
 \input{songs/volame_slunicko.tex} % 75
 \vfil
-\hspace*{2cm}\includegraphics[width=11cm]{17.eps}
+\hspace*{2cm}\includegraphics[width=11cm]{images/17.eps}
 \vfil
 \pagebreak
 \input{songs/hejna_vcel.tex} % 76
@@ -328,7 +346,7 @@ NEPRODEJNÉ\,!}
 \input{songs/franky_dlouhan.tex} % 78
 \input{songs/doney_gal.tex} % 79
 \vfil
-\hspace*{2cm}\includegraphics[width=10cm]{18.eps}
+\hspace*{2cm}\includegraphics[width=10cm]{images/18.eps}
 \vfil
 \input{songs/zajici.tex} % 80
 \input{songs/dokud_se_zpiva.tex} % 81
@@ -337,6 +355,7 @@ NEPRODEJNÉ\,!}
 \input{songs/hora_rip.tex} % 83
 \input{songs/praminek_vlasu.tex} % 84
 \input{songs/konci_divadlo.tex} % 85
+\vfil
 \input{songs/skrhola.tex} % 86
 \pagebreak
 \input{songs/kos.tex} % 87
@@ -380,6 +399,9 @@ NEPRODEJNÉ\,!}
 \pagebreak
 \input{songs/svita_novej_den.tex} % 116
 \input{songs/babylon_a_my_(hymna_2015).tex} % 117
+\pagebreak
+\input{songs/hymna_2016.tex} %118
+\input{songs/hymna_2017.tex} %119
 
 \pagebreak ~ % empty page
 \cleardoublepage
