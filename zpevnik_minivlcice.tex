@@ -10,7 +10,7 @@
 
 \usepackage{ifmtarg}% http://ctan.org/pkg/ifmtarg
 \usepackage[chorded,onesongcolumn,noshading]{songs}
-\newindex{titleidx}{titleidx}
+\newindex{titleidx}{minivlciceidx}
 
 \makeatletter
   \newcommand\HUGE{\@setfontsize\Huge{38}{47}}
@@ -198,9 +198,17 @@
 
 \newcommand{\OBRAZEK}[4]{%
   \begin{intersong}%
-  #1\centering%
+  #1%
+  \begin{center}
   \includegraphics[width=#2\hsize]{images/#3.eps}%
+  \end{center}
   #4%
+  \end{intersong}}
+\newcommand{\NOTY}[2]{%
+  \begin{intersong}%
+  \begin{center}
+  \includegraphics[width=\hsize]{score/#2.eps}%
+  \end{center}
   \end{intersong}}
 \newcommand{\PISNICKA}[1]{\input{songs/#1.tex}}
 \newcommand{\NEWPAGE}{%
@@ -242,17 +250,16 @@
 %\fancyhead{} % na prázdných stránkách nechci záhlaví
 %  \renewcommand{\headrulewidth}{0pt} % ani linku
 %}
-\usepackage[ddmmyyyy,hhmmss]{datetime}
-\renewcommand{\dateseparator}{}
-\renewcommand{\timeseparator}{}
-\usepackage{tikz}
+\usepackage[ddmmyyyy]{datetime}
+\renewcommand{\dateseparator}{.}
+\renewcommand{\timeseparator}{:}
 
 \usepackage{xcolor}
 
-%\usepackage[printwatermark]{xwatermark}
-%\newwatermark[evenpages,color=blue!20,angle=90,scale=5,xpos=90,ypos=-20]{D R A F T}
-%\newwatermark[allpages,color=blue!20,scale=0.5,xpos=0,ypos=120]{\today\ \currenttime}
-%\newwatermark[oddpages,color=blue!20,angle=90,scale=5,xpos=-80,ypos=-20]{D R A F T}
+\usepackage[printwatermark]{xwatermark}
+\newwatermark[evenpages,color=blue!20,angle=90,scale=5,xpos=60,ypos=-5]{\sffamily D R A F T}
+\newwatermark[allpages,color=blue!20,scale=1,xpos=0,ypos=-140]{\sffamily \today\ \currenttime}
+\newwatermark[oddpages,color=blue!20,angle=90,scale=5,xpos=-100,ypos=-2]{\sffamily D R A F T}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -364,7 +371,6 @@
 \HUGE
 
 
-
 \begin{songs}{titleidx}
 \PISNICKA{dal_prece_nejdeme_sami} % 
 \OBRAZEK{\vfill}{0.9}{dal_prece_nejdeme_sami}{}
@@ -374,11 +380,11 @@
 \PISNICKA{dekujem_ti_pane_boze} %
 \OBRAZEK{\vfill}{0.9}{dekujem_ti_pane_boze}{}
 \PISNICKA{diky} %
-\OBRAZEK{\vfill}{0.4}{diky}{}
+\OBRAZEK{\vfill}{0.3}{diky}{}
 \PISNICKA{do_tvych_starosti} %
 
 \PISNICKA{hvezdy_tise_vysly} % 
-\OBRAZEK{\vfill}{0.4}{hvezdy_tise_vysly}{}
+\OBRAZEK{}{0.3}{hvezdy_tise_vysly}{}
 \PISNICKA{zapadlo_jiz_slunce}
 \PISNICKA{kazdy_den} % 
 \PISNICKA{laudato_sii} %
@@ -386,82 +392,128 @@
 \PISNICKA{kdo_stvoril} % 
 \OBRAZEK{\vfill}{0.4}{kdo_stvoril}{}
 \PISNICKA{koho_vcelky_chvali} %
-\OBRAZEK{\vfill}{0.4}{koho_vcelky_chvali}{}
+%\OBRAZEK{\vfill}{0.1}{koho_vcelky_chvali}{}
 \PISNICKA{moudrost_mi_pane_davej} %
-\OBRAZEK{\vfill}{0.4}{moudrost_mi_pane_davej}{}
+\OBRAZEK{}{0.5}{moudrost_mi_pane_davej}{}
 % Pán Bůh nás má všechny rád
 \PISNICKA{nekdo_me_vede_za_ruku} % 
-\OBRAZEK{\vfill}{0.4}{nekdo_me_vede_za_ruku}{}
+\OBRAZEK{}{0.3}{nekdo_me_vede_za_ruku}{}
 \PISNICKA{neni_lepsi_na_tom_svete} %
-\OBRAZEK{\vfill}{0.4}{neni_lepsi_na_tom_svete}{}
+\OBRAZEK{\vspace*{-15mm}}{0.4}{neni_lepsi_na_tom_svete}{\vspace*{5mm}}
 \PISNICKA{pane_slys_nas_hlas} % 
 \PISNICKA{rok_za_rokem} % 44
+\OBRAZEK{\vspace*{-1cm}}{0.3}{rok_za_rokem}{}
 \PISNICKA{slunce_v_rose_koupalo_se} %
+\OBRAZEK{}{0.5}{slunce_v_rose_koupalo_se}{}
 \PISNICKA{stary_pribeh} %
+\OBRAZEK{}{0.4}{rek_jednou_mojzis_lidu_svemu}{\vspace*{5cm}}
 \PISNICKA{rekl_tobe} %
+\OBRAZEK{\vfill}{0.4}{rekl_tobe}{}
 \PISNICKA{skautska_vecerka} %
 \PISNICKA{uz_mi_oci_tizi_sen} %
+\OBRAZEK{}{0.4}{uz_mi_oci_tizi_sen}{}
 \PISNICKA{vlak_bozi} %
+\OBRAZEK{\vfill}{0.6}{vlak_bozi}{}
 \PISNICKA{uz_k_nam_prisel_bracha_den} %
+\OBRAZEK{\vspace*{-1cm}}{0.3}{uz_k_nam_prisel_bracha_den}{}
 \PISNICKA{uz_svita_jasny_bily_den} %
+\OBRAZEK{}{0.9}{uz_svita_jasny_bily_den}{}
 \PISNICKA{za_maminku_za_tatinka} % Za maminku za tatínka budem děkovat
+\OBRAZEK{}{0.5}{za_maminku_za_tatinka}{}
 \PISNICKA{hosana} %
+\OBRAZEK{\vfill}{0.9}{hosana}{}
 \PISNICKA{zalm_150} %  
 % Housenka
 \PISNICKA{duha} %
+\OBRAZEK{\vfill}{0.9}{duha}{}
 % Můj Bůh je
 % Maličký
 \PISNICKA{hau_bilou_plani} % 
+\OBRAZEK{\vspace*{3cm}}{0.9}{hau_bilou_plani}{}
 \PISNICKA{hlavne_ze_jsme_na_vzduchu} % Hlavně že jsme na vzduchu
-\PISNICKA{brum_brum_brum} % Brum brum brum
+\OBRAZEK{\vfill}{0.6}{hlavne_ze_jsme_na_vzduchu}{}
 \PISNICKA{david_a_golias} % 
+\OBRAZEK{\vfill}{0.9}{david_a_golias}{}
+\PISNICKA{brum_brum_brum} % Brum brum brum
+\OBRAZEK{\vspace*{-1cm}}{0.4}{brum_brum_brum}{}
 \PISNICKA{ho_ho_watanay}% Ho ho watanay
+\OBRAZEK{}{0.5}{ho_ho_watanay}{}
 \PISNICKA{kaca_nasla_ptace}% Káča našla práče
-\input{songs/honky_tonky_blues}% Honky tonky blues
+\OBRAZEK{\vspace*{-3cm}}{0.7}{kaca_nasla_ptace}{\vspace*{-1cm}}
+\PISNICKA{honky_tonky_blues}% Honky tonky blues
+\OBRAZEK{}{0.5}{honky_tonky_blues}{}
 \PISNICKA{jonatan} % 
+\OBRAZEK{\vfill}{0.9}{jonatan}{}
 \PISNICKA{kdyby_byl_bavorov}% Kdyby byl bavorov
+\OBRAZEK{\vfill}{0.9}{kdyby_byl_bavorov}{}
 \PISNICKA{kos} %
+\OBRAZEK{\vspace*{-2.5cm}}{0.3}{kos}{\vspace*{-1cm}}
 \PISNICKA{kdyz_jde_maly_bobr_spat} % Když jse malý bobr spát
+\OBRAZEK{\vspace*{-2.5cm}}{0.4}{kdyz_jde_maly_bobr_spat}{}
 \PISNICKA{konci_divadlo} %
+\OBRAZEK{\vspace*{-2cm}}{0.4}{konci_divadlo}{}
 \PISNICKA{krasny_je_vzduch} % 
+\OBRAZEK{\vspace*{-2.5cm}}{0.5}{krasny_je_vzduch}{}
 \PISNICKA{nezachazej_slunce} % Nezacházej slunce
+\OBRAZEK{\vspace*{-1cm}}{0.7}{nezachazej_slunce}{}
 \PISNICKA{mravenci_ukolebavka} %
+\OBRAZEK{\vspace*{-1.5cm}}{0.5}{mravenci_ukolebavka}{}
 \PISNICKA{neni_nutno} %
+\OBRAZEK{\vspace*{-0.5cm}}{0.3}{neni_nutno}{}
 \PISNICKA{povim_vam_ted} %
+\OBRAZEK{\vfill}{0.9}{povim_vam_ted}{}
 \PISNICKA{sneci_blues} %
+\OBRAZEK{}{0.6}{sneci_blues}{}
 \PISNICKA{sadlo_na_chleba} %
+\OBRAZEK{}{0.6}{sadlo_na_chleba}{}
 \PISNICKA{severni_vitr} %
-\PISNICKA{tisic_mil}% Tisíc mil
+\OBRAZEK{\vspace*{-2.5cm}}{0.3}{severni_vitr}{}
 \PISNICKA{zajici} %
+\OBRAZEK{\vfill}{0.9}{zajici}{}
+\PISNICKA{tisic_mil}% Tisíc mil
+\OBRAZEK{\vspace*{-3.5cm}}{0.25}{tisic_mil}{}
 \PISNICKA{tri_citronky}% Tři citronky
+%\OBRAZEK{\vspace*{-6.5cm}}{0.3}{tri_citronky}{\vspace*{6cm}}
 \PISNICKA{volame_slunicko} %
+\OBRAZEK{\vfill}{0.5}{volame_slunicko}{}
 \PISNICKA{usnul_jiz_cely_nas_dum}% Usnul již celý náš dům
+\OBRAZEK{}{0.3}{usnul_jiz_cely_nas_dum}{}
 \PISNICKA{kolik_je_na_svete}% Kolik je na světě
 \PISNICKA{muz_moudry}% Muž moudrý
+\OBRAZEK{\vspace*{-2.5cm}}{0.2}{muz_moudry}{}
 \PISNICKA{pampelisky} % Pambelišky
 \PISNICKA{ovecka_kudrnata}% Ovečka kudrnatá
+\OBRAZEK{}{0.4}{ovecka_kudrnata}{}
 \PISNICKA{slunicka}% Sluníčka
+\OBRAZEK{\vspace*{-2.5cm}}{0.2}{slunicka}{}
 % U zeléné přesličky
 % Proč svítí sluníčko
 % Kdo je pánem džungle
 % Dům na skále
 \PISNICKA{banany} % Banány
+\OBRAZEK{\vfill}{0.9}{banany}{}
 \PISNICKA{kocabka}% Kocábka
 \PISNICKA{vecernicek} % Večerníček
+\OBRAZEK{\vfill}{0.9}{vecernicek}{}
 % Podobenství o zrnu a koukolu
 % Ježci
 \PISNICKA{vceli_medvidci} % Včelí medvídci
 \PISNICKA{o_nas_mily_boze}% Broučci
+\OBRAZEK{\vfill}{0.9}{broucci}{}
 \PISNICKA{andele}% Andělé /// budíčková??? http://zpevniky.casd.cz/zpevniky/zpev5/090.jpg
 \PISNICKA{kdyz_mas_radost}% Když máš radost
 % -----Píseň osamělé hory
 \PISNICKA{moudrost_medvedi_2000}% Moudrost medvědí (2000)
+\OBRAZEK{}{0.6}{moudrost_medvedi}{}
 \PISNICKA{pod_dubem_za_dubem}% Pod dubem za dubem (2005)
+\OBRAZEK{}{0.5}{pod_dubem_za_dubem}{}
 % Chválím tě země má 
 \PISNICKA{bratre_kubo}% Bratře Kubo (2008)
 \PISNICKA{pametnik}% Pamětník (2009)
+%\OBRAZEK{\vfill}{0.9}{pametnik}{}
 \PISNICKA{hymna_minivlcice_2010} % Hymna 2010
 \PISNICKA{hymna_minivlcice_2011}% Hymna 2011
+\OBRAZEK{\vfill}{0.9}{hymna_2011}{}
 \PISNICKA{pohadkova_hymna_2012}% Kočičí kluci (2012)
 \PISNICKA{ostrov_tajemny}% Ostrov tajemný (2013)
 \PISNICKA{indianska_hymna}% Indiánská hymna (2014)
@@ -471,9 +523,11 @@
 \PISNICKA{asterix_obelix_kleopatra}% Hymna 2018
 \PISNICKA{posila_na_cestu}% K svobodě je dlouhé putování
 \PISNICKA{ctyrlistek_v_pohadce}
+\NOTY{0.5}{ctyrlistek_v_pohadce}
 
-
-\showindex{Obsah}{titleidx}
 \end{songs}
+\LARGE
+\renewcommand{\idxrefsfont}{\bfseries}
+\showindex[1]{\HUGE Seznam písniček}{titleidx}
 
 \end{document}
