@@ -1,0 +1,71 @@
+\documentclass[a4paper,landscape]{article}
+\usepackage[margin=0cm]{geometry}
+\usepackage{pdfpages}
+\usepackage{pgffor}
+\usepackage{tikz}
+\usepackage{ifthen}
+
+\pagestyle{plain} % no page numbers
+\newcounter{pdfpages}
+\newcommand*{\getpdfpages}[1]{%
+  \begingroup
+    \sbox0{% 
+      \includegraphics{#1}%
+      \setcounter{pdfpages}{\pdflastximagepages}%
+    }%
+  \endgroup
+}
+\usepackage[ddmmyyyy]{datetime}
+\renewcommand{\dateseparator}{.}
+
+
+\usepackage{pdfpages}
+\usetikzlibrary{calc}
+
+\begin{document}
+\pagestyle{empty}
+\setlength{\fboxrule}{0.2pt}
+
+%\setlength\voffset{-0.1in} % adjust the vertical offset
+%\setlength\hoffset{-0.4in} % adjust the horizontal offset
+\getpdfpages{zpevnik_minivlcice.pdf}
+
+\includepdf[
+nup=2x1,
+pages={1,1},
+%booklet=true,
+%angle=90,
+%fitpaper=true, 
+pagecommand={
+\pagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \draw[blue] ($(current page.north)+(0mm,0mm)$) -- ++(0,-10mm); %l  %TODO: DODĚLAT PŘESNÉ UMÍSTĚNÍ
+  \draw[blue] ($(current page.south)+(0mm,0mm)$) -- ++(0,10mm); %l
+  \draw[blue] ($(current page.west)+(6mm,40mm)$) -- ++(4mm,0mm); %vodorovna
+  \draw[blue] ($(current page.west)+(8mm,42mm)$) -- ++(0mm,-4mm); %m
+  \draw[blue] ($(current page.west)+(6mm,-40mm)$) -- ++(4mm,0mm); %m
+  \draw[blue] ($(current page.west)+(8mm,-38mm)$) -- ++(0mm,-4mm); %m
+  \draw[blue] ($(current page.center)+(6mm,40mm)$) -- ++(4mm,0mm); %m
+  \draw[blue] ($(current page.center)+(8mm,42mm)$) -- ++(0mm,-4mm); %m
+  \draw[blue] ($(current page.center)+(6mm,-40mm)$) -- ++(4mm,0mm); %m
+  \draw[blue] ($(current page.center)+(8mm,-38mm)$) -- ++(0mm,-4mm); %m  
+  \node[rotate=90] at ($(current page.west)+(8mm,0mm)$) {\scriptsize\today};%
+  \node[rotate=90] at ($(current page.center)+(8mm,0mm)$) {\scriptsize\today};%
+\end{tikzpicture}%
+}]{zpevnik_minivlcice.pdf}
+\foreach \n in {2,...,\value{pdfpages}}{
+  \includepdf[
+  nup=2x1,
+  pages={\n ,\n },
+  %fitpaper=true
+  pagecommand={
+\pagestyle{empty}
+\ifthenelse{\isodd{\n}}%
+    {\begin{tikzpicture}[remember picture,overlay]%
+  \node[rotate=90] at ($(current page.west)+(8mm,0mm)$) {\scriptsize\today};%
+  \node[rotate=90] at ($(current page.center)+(8mm,0mm)$) {\scriptsize\today};%
+\end{tikzpicture}%
+}{}
+}]{zpevnik_minivlcice.pdf}
+}
+\end{document}
