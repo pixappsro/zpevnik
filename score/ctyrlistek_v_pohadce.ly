@@ -10,7 +10,7 @@ global = {
   system-system-spacing = 
     #'(
         (basic-distance . 0.1)
-        (padding . 2)
+        (padding . 1)
       )
 
   top-margin = 0\cm
@@ -27,6 +27,7 @@ global = {
   <<
    \chords {
      \set chordNameLowercaseMinor = ##t
+      {\skip 2 \skip 2 } % přeskakuji předehru
      es4*2 f4*4 b4*2
      es4*4 b
      es4*3 b8*3:7 es8*7
@@ -41,6 +42,7 @@ global = {
         \global
         
         % Music follows here.
+        r8 bes, c d es f g as 
        \repeat volta 2 { bes4^\markup{\bold \large sloka} g | c4.  bes8 | as f4. | bes4 r } 
        \alternative {
           { g es es g f bes, r2 }
@@ -53,12 +55,14 @@ global = {
        as as16(g f8) es d es f d 
        es es' d c bes as g f es4 r4
        \bar "|."
+
        
       }
       }
     }
     \new Lyrics {
       \lyricsto "melody" {
+             {\skip 1 \skip 1 \skip 1 \skip 1 \skip 1 \skip 1 \skip 1} % přeskakuji předehru
              \set stanza = #"1. "
        O -- tví -- rá se po -- há -- dka,
        pro hol -- ky i klu -- ky
@@ -68,6 +72,8 @@ global = {
     }
     \new Lyrics {
       \lyricsto "melody" {
+             {\skip 1 \skip 1 \skip 1 \skip 1 \skip 1 \skip 1 \skip 1} % přeskakuji předehru
+
        za -- ťu -- kej si na vrá -- tka 
              \repeat unfold 2 { \skip 2 \skip 2 \skip 2 } % odskakuji 6 not(primavolta)
             ťu -- ky  ťu -- ky, ťu -- ky, ťu -- ky
