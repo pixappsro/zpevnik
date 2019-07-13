@@ -3,7 +3,7 @@
   #(set-global-staff-size 20)
 
 global = {
-  \key es \major
+  \key d \major % transponovat do D dur
   \time 2/4
 }
 \paper {
@@ -28,32 +28,32 @@ global = {
    \chords {
      \set chordNameLowercaseMinor = ##t
       {\skip 2 \skip 2 } % přeskakuji předehru
-     es4*2 f4*4 b4*2
-     es4*4 b
-     es4*3 b8*3:7 es8*7
-     f4*2:m b g:m c:m
-     f:m b:7 es b es 
+     d4*2 e4*4 a4*2
+     d4*4 a
+     d4*3 a8*3:7 d8*7
+     e4*2:m a fis:m b:m
+     e:m a:7 d a d
     }
     \new Staff \with {
               \override StaffSymbol.thickness = #2
      }{
     
-      \new Voice = "melody" {\relative c'' {
+      \new Voice = "melody" {  \relative c' {
         \global
         
         % Music follows here.
-        r8 bes, c d es f g as 
-       \repeat volta 2 { bes4^\markup{\bold \large sloka} g | c4.  bes8 | as f4. | bes4 r } 
+        r8^\markup{\bold \large předehra} a b cis d e fis g
+       \repeat volta 2 { a4^\markup{\bold \large sloka} fis | b4.  a8 | g e4. | a4 r }
        \alternative {
-          { g es es g f bes, r2 }
-          { g'8 es r4 g8 es as f f es r4 | }
+          { fis d d fis e a, r2 }
+          { fis'8 d r4 fis8 d g e e d r4 | }
        }
        \bar "||"
        
-       r8^\markup{\bold \large mezihra} g as bes c c16( bes as8) g f g as f
-       bes bes16( as g8) f es f g es
-       as as16(g f8) es d es f d 
-       es es' d c bes as g f es4 r4
+       r8^\markup{\bold \large mezihra} fis g a b b16( a g8) fis e fis g e
+       a a16( g fis8) e d e fis d
+       g g16(fis e8) d cis d e cis
+       d d' cis b a g fis e d4 r4 r2
        \bar "|."
 
        
@@ -86,7 +86,7 @@ global = {
         indent = 0\in
     \context {
       \Score
-      \override SpacingSpanner.base-shortest-duration = #(ly:make-moment 1/16)
+      \override SpacingSpanner.base-shortest-duration = #(ly:make-moment 1/10)
       \remove "Bar_number_engraver"
     }
   }
