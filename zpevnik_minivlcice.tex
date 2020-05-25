@@ -25,7 +25,7 @@
 
 \renewcommand{\chorusfont}{\mdseries\slokasize}
 \renewcommand{\lyricfont}{\mdseries\slokasize}
-%\renewcommand{\printversenum}[1]{\bfseries\LARGE#1.\ } 
+%\renewcommand{\printversenum}[1]{\bfseries\LARGE#1.\ }
 \setlength{\versenumwidth}{1cm}
 
 \setlength{\sbarheight}{0mm}% tloušťka vodorovné čáry
@@ -54,7 +54,7 @@
 \draw[line join = round,line width = \TLOUSTKA, line cap=round] plot [smooth, tension=1] coordinates {($(stred.center) + (0.46,0.2) $) (0.26\hsize,0.45) (0.6\hsize,0.05) ($(\hsize,0.35)+(-1,0)$)};
 %\foreach \Point in {(0.26\hsize,0.45),(0.6\hsize,0.05)} \node at \Point {\textbullet};
 \end{tikzpicture}%
-\ }} % číslo u nadpisu 
+\ }} % číslo u nadpisu
 
 \setlength{\songnumwidth}{2cm}% odsazení nadpisu
 
@@ -123,7 +123,7 @@
         \nointerlineskip%
         \vbox{\makepostlude}%
         \CARAKONEC
-        
+
       }%
     \endgroup%
     \SB@insongfalse%
@@ -193,7 +193,7 @@
       \beginchorus
       \let\KONEC\endchorus%
       }
-\newcommand{\REFRENHRAJ}{\REFREN Ref.} 
+\newcommand{\REFRENHRAJ}{\REFREN Ref.}
 
 
 \newcommand{\OBRAZEK}[4]{%
@@ -244,7 +244,7 @@
 %\fancyhf{} % smaže aktuální nastavení záhlaví a zápatí
 %\fancyfoot[c]{\bfseries\thepage}                               % zrušení čísel stránek
 %\renewcommand{\headrulewidth}{0pt} % tloušťka linky
-%\renewcommand{\footrulewidth}{3pt}   % patička 
+%\renewcommand{\footrulewidth}{3pt}   % patička
 %\addtolength{\headheight}{1.2pt}% prostor pro záhlaví
 %\fancypagestyle{plain}{
 %\fancyhead{} % na prázdných stránkách nechci záhlaví
@@ -289,7 +289,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{ifthen}
- 
+
 \newcommand{\newevenside}{
 	\ifthenelse{\isodd{\thepage}}{\newpage}{
 	\newpage
@@ -324,7 +324,7 @@
 %\marginparwidth 0cm
 
 %\oddsidemargin 5cm
-%\evensidemargin 1cm 
+%\evensidemargin 1cm
 
 
 \pagestyle{empty}
@@ -372,10 +372,10 @@
 
 
 \begin{songs}{titleidx}
-\PISNICKA{dal_prece_nejdeme_sami} % 
+\PISNICKA{dal_prece_nejdeme_sami} %
 \OBRAZEK{\vfill}{0.9}{dal_prece_nejdeme_sami}{}
 % Ha šalom
-\PISNICKA{het_bot_ba} % 
+\PISNICKA{het_bot_ba} %
 \NEWPAGE
 \PISNICKA{dekujem_ti_pane_boze} %
 \OBRAZEK{\vfill}{0.9}{dekujem_ti_pane_boze}{}
@@ -383,24 +383,24 @@
 \OBRAZEK{\vfill}{0.3}{diky}{}
 \PISNICKA{do_tvych_starosti} %
 
-\PISNICKA{hvezdy_tise_vysly} % 
+\PISNICKA{hvezdy_tise_vysly} %
 \OBRAZEK{}{0.3}{hvezdy_tise_vysly}{}
 \PISNICKA{zapadlo_jiz_slunce}
-\PISNICKA{kazdy_den} % 
+\PISNICKA{kazdy_den} %
 \PISNICKA{laudato_sii} %
 \OBRAZEK{\vfill}{0.4}{laudato_sii}{}
-\PISNICKA{kdo_stvoril} % 
+\PISNICKA{kdo_stvoril} %
 \OBRAZEK{\vfill}{0.4}{kdo_stvoril}{}
 \PISNICKA{koho_vcelky_chvali} %
 %\OBRAZEK{\vfill}{0.1}{koho_vcelky_chvali}{}
 \PISNICKA{moudrost_mi_pane_davej} %
 \OBRAZEK{}{0.5}{moudrost_mi_pane_davej}{}
 % Pán Bůh nás má všechny rád
-\PISNICKA{nekdo_me_vede_za_ruku} % 
+\PISNICKA{nekdo_me_vede_za_ruku} %
 \OBRAZEK{}{0.3}{nekdo_me_vede_za_ruku}{}
 \PISNICKA{neni_lepsi_na_tom_svete} %
 \OBRAZEK{\vspace*{-15mm}}{0.4}{neni_lepsi_na_tom_svete}{\vspace*{5mm}}
-\PISNICKA{pane_slys_nas_hlas} % 
+\PISNICKA{pane_slys_nas_hlas} %
 \PISNICKA{rok_za_rokem} % 44
 \OBRAZEK{\vspace*{-1cm}}{0.3}{rok_za_rokem}{}
 \PISNICKA{slunce_v_rose_koupalo_se} %
@@ -422,17 +422,17 @@
 \OBRAZEK{}{0.5}{za_maminku_za_tatinka}{}
 \PISNICKA{hosana} %
 \OBRAZEK{\vfill}{0.9}{hosana}{}
-\PISNICKA{zalm_150} %  
+\PISNICKA{zalm_150} %
 % Housenka
 \PISNICKA{duha} %
 \OBRAZEK{\vfill}{0.9}{duha}{}
 % Můj Bůh je
 % Maličký
-\PISNICKA{hau_bilou_plani} % 
+\PISNICKA{hau_bilou_plani} %
 \OBRAZEK{\vspace*{3cm}}{0.9}{hau_bilou_plani}{}
 \PISNICKA{hlavne_ze_jsme_na_vzduchu} % Hlavně že jsme na vzduchu
 \OBRAZEK{\vfill}{0.6}{hlavne_ze_jsme_na_vzduchu}{}
-\PISNICKA{david_a_golias} % 
+\PISNICKA{david_a_golias} %
 \OBRAZEK{\vfill}{0.9}{david_a_golias}{}
 \PISNICKA{brum_brum_brum} % Brum brum brum
 \OBRAZEK{\vspace*{-1cm}}{0.4}{brum_brum_brum}{}
@@ -442,7 +442,7 @@
 \OBRAZEK{\vspace*{-3cm}}{0.7}{kaca_nasla_ptace}{\vspace*{-1cm}}
 \PISNICKA{honky_tonky_blues}% Honky tonky blues
 \OBRAZEK{}{0.5}{honky_tonky_blues}{}
-\PISNICKA{jonatan} % 
+\PISNICKA{jonatan} %
 \OBRAZEK{\vfill}{0.9}{jonatan}{}
 \PISNICKA{kdyby_byl_bavorov}% Kdyby byl bavorov
 \OBRAZEK{\vfill}{0.9}{kdyby_byl_bavorov}{}
@@ -452,7 +452,7 @@
 \OBRAZEK{\vspace*{-2.5cm}}{0.4}{kdyz_jde_maly_bobr_spat}{}
 \PISNICKA{konci_divadlo} %
 \OBRAZEK{\vspace*{-2cm}}{0.4}{konci_divadlo}{}
-\PISNICKA{krasny_je_vzduch} % 
+\PISNICKA{krasny_je_vzduch} %
 \OBRAZEK{\vspace*{-2.5cm}}{0.5}{krasny_je_vzduch}{}
 \PISNICKA{nezachazej_slunce} % Nezacházej slunce
 \OBRAZEK{\vspace*{-1cm}}{0.7}{nezachazej_slunce}{}
@@ -507,7 +507,7 @@
 \OBRAZEK{}{0.6}{moudrost_medvedi}{}
 \PISNICKA{pod_dubem_za_dubem}% Pod dubem za dubem (2005)
 \OBRAZEK{}{0.5}{pod_dubem_za_dubem}{}
-% Chválím tě země má 
+% Chválím tě země má
 \PISNICKA{bratre_kubo}% Bratře Kubo (2008)
 \PISNICKA{pametnik}% Pamětník (2009)
 %\OBRAZEK{\vfill}{0.9}{pametnik}{}
@@ -526,6 +526,8 @@
 \NOTY{0.5}{ctyrlistek_v_pohadce}
 \PISNICKA{den_skoncil}
 \PISNICKA{doufej_v_hospodina}
+\PISNICKA{pipi_dlouha_puncocha}
+\NOTY{}{pipi_dlouha_puncocha}
 \end{songs}
 \LARGE
 \renewcommand{\idxrefsfont}{\bfseries}
