@@ -27,6 +27,8 @@ global = {
   <<
    \chords {
      \set chordNameLowercaseMinor = ##t
+     s1*8
+     
      f2*2 g:m
      c:7 f2*4 g2*2:m
      c2*2 f2*4 b2*2
@@ -54,9 +56,17 @@ global = {
 
       \new Voice = "melody" {  \relative c' {
         \global
-
+        \grace <f c'>1 \normalsize \bar "||"
+        \newSpacingSection
+        \override Score.SpacingSpanner.spacing-increment = #0.4
+  
+        f2 f c'4 f,2. bes8 a g f e4 g f a c,2
+        f2 f c'4 f,2. bes8 a g f e4 g f2 r
+      \bar "||"
+      \newSpacingSection
+  \revert Score.SpacingSpanner.spacing-increment
         % Music follows here.
-        \mark\markup\box{\bold \large "Ref."}
+        \mark\markup\box{\bold \normalsize "sloka"}
       c4 f a f
       g2 bes8 a g f
       e4 g c, e
@@ -67,21 +77,21 @@ global = {
       e4 g c, e
       
       f4 r4 
-      {s1*0_\markup\tiny{\italic "Fine"}} 
-      \once \override TextScript #'X-offset = #-2 r2^\markup\line\small{\box{"B"}}
+      % {s1*0_\markup\tiny{\italic "Fine"}} 
+      \once \override TextScript #'X-offset = #-2 r2 % ^\markup\line\small{\box{"B"}}
       
-      \bar "|."
+      \bar "||"
       
-      \mark\markup\box{\bold \large "A"}
-      a2 a4 a
-      bes2 bes4 bes8 a
-      g4 g8 g g4 g8 f
-      e4 f g r
-      
+      \mark\markup\box{\bold \normalsize "refrén"}
       a2 a4 a
       bes2 bes4 a
+      g4 g g f
+      e f g r
+      
+      a2 a4 a
+      bes2 bes4 a 
       g g f e
-      f4 r4 r2^\markup\line{\tiny \italic "D.C. al" \box "B"}
+      f4 r4 r2 %^\markup\line{\tiny \italic "D.sloka al" \box "B"}
       
       % http://lilypond.web.fc2.com/latest/Documentation/snippets/repeats.html#repeats-positioning-segno-and-coda-_0028with-line-break_0029
      % \once \override TextScript #'word-space = #1.5
@@ -112,7 +122,7 @@ global = {
         \once \override TextScript #'word-space = #0
         \once \override TextScript #'X-offset = #2.5
         \once \override TextScript #'Y-offset = #-1
-        | s1*0^\markup { \center-column { \italic "refrén" } }
+        | s1*0^\markup { \center-column { \italic "sloka" } }
 
         % Increasing the unfold counter will expand the staff-free space
         \repeat unfold 2 {
@@ -122,9 +132,9 @@ global = {
         % Resume bar count and show staff lines again
      \startStaff
    \cadenzaOff
-   
+   \break
 
-      \bar "" \once \override TextScript #'X-offset = #-3 \once \override TextScript #'Y-offset = #0 s2^\markup\box{\bold \large "B"}
+      \bar "" \once \override TextScript #'X-offset = #-3 \once \override TextScript #'Y-offset = #0 s2^\markup\box{\bold \normalsize "B"}
       a2 bes c 
       \repeat volta 2 { 
       d2. f4
@@ -141,7 +151,7 @@ global = {
         }
         {
           a r g r
-          f r r2^\markup\line{\tiny \italic "D.C. al Fine"}
+          f r r2 %^\markup\line{\tiny \italic "D.sloka al Fine"}
         }
       }
        \bar "||"
@@ -152,7 +162,7 @@ global = {
         \once \override TextScript #'word-space = #0
         \once \override TextScript #'X-offset = #2.5
         \once \override TextScript #'Y-offset = #-1
-        | s1*0^\markup { \center-column { \italic "refrén" } }
+        | s1*0^\markup { \center-column { \italic "sloka" } }
 
         % Increasing the unfold counter will expand the staff-free space
         \repeat unfold 2 {
@@ -168,24 +178,36 @@ global = {
     }
     \new Lyrics {
       \lyricsto "melody" {
-     %        {\skip 1 \skip 1 \skip 1 \skip 1 \skip 1 \skip 1 \skip 1} % přeskakuji předehru
+       \repeat unfold 24 {\skip 1} % přeskakuji předehru (počet not)
      %        \set stanza = #"1. "
      %  O -- tví -- rá se po -- há -- dka,
      %  pro hol -- ky i klu -- ky
      %  \repeat unfold 2 { \skip 2 \skip 2 \skip 2 \skip 2 } % odskakuji 8 not(secondavolta), možno pokračovat dál v mšlodii
-     tra la la la tra la la la la
-     tra la tra la tra la
-     tra la la la tra la la la la
-     tra la tra la la
+     \set stanza = #"1. "
+     Pří -- běh za -- zpí -- vám tra la la la 
+     O sta -- te -- čné dí -- vce 
+     Já ji ta -- ky znám tra la la la 
+     Pi -- ppi jmé -- no má
+     
+     Hej Pi -- ppi hou Pi -- ppi 
+     Hej hou haj hou hý ha há 
+     Hej Pi -- ppi hou Pi -- ppi 
+     Dlou -- há Pun -- čo -- cha
+     
+     Já za -- vo -- lám, 
+     že na svě -- tě jsem rád, mů -- žu si s_vá -- mi hrát 
+     Za do -- bro -- druž -- stvím s_Pi -- ppi jdem' 
+     Co če -- ká 
        }
     }
     \new Lyrics {
       \lyricsto "melody" {
-    %         {\skip 1 \skip 1 \skip 1 \skip 1 \skip 1 \skip 1 \skip 1} % přeskakuji předehru
+        \repeat unfold 80 {\skip 1} % přeskakuji předehru (počet not)
 
-     %  za -- ťu -- kej si na vrá -- tka
-     %        \repeat unfold 2 { \skip 2 \skip 2 \skip 2 } % odskakuji 6 not(primavolta)
-     %       ťu -- ky  ťu -- ky, ťu -- ky, ťu -- ky
+        nás, to -- ho se ne -- bo -- jím, vždyť ka -- ma -- rá -- dy mám 
+        A spo -- lu vše -- chno 
+        \repeat unfold 6 { \skip 1 }
+        do -- ká -- žem'.
       }
     }
 
