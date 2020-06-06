@@ -1,6 +1,8 @@
 \version "2.18.2"
   #(set-default-paper-size "a5portrait")
   #(set-global-staff-size 20)
+\language czech
+
 
 global = {
   \key f \major
@@ -25,22 +27,24 @@ global = {
 }
 \score {
   <<
-   \chords {
+    \transpose f c 
+    { \chords {
+     \germanChords
      \set chordNameLowercaseMinor = ##t
      s1*8
      
      f2*2 g:m
      c:7 f2*4 g2*2:m
-     c2*2 f2*4 b2*2
+     c2*2 f2*4 bes2*2
      c2*4:7
-     f2*2 b
+     f2*2 bes
      c:7 f2*2
      
      s2*3
      
      d2*3 
      
-     b2*2 c:7 
+     bes2*2 c:7 
      a:m d:m 
      g:m c:7
      
@@ -49,12 +53,14 @@ global = {
      f2*1 c:7 f2*2
      
      
-    }
+  } }
     \new Staff \with {
               \override StaffSymbol.thickness = #2
      }{
 
-      \new Voice = "melody" {  \relative c' {
+      \new Voice = "melody" {  
+        \transpose f c {
+      \relative c' {
         \global
         \grace <f c'>1 \normalsize \bar "||"
         \newSpacingSection
@@ -173,6 +179,7 @@ global = {
    \cadenzaOff
 
 
+      }
       }
       }
     }
