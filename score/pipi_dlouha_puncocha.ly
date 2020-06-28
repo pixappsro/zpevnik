@@ -1,5 +1,8 @@
 \version "2.18.2"
-  #(set-default-paper-size "a5portrait")
+#(set! paper-alist (cons '("ROZMER" . (cons (* 148 mm) (* 300 mm))) paper-alist))
+
+ % #(set-default-paper-size "a5portrait")
+   #(set-default-paper-size "ROZMER")
   #(set-global-staff-size 20)
 \language czech
 
