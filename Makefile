@@ -28,3 +28,19 @@ publish-draft: minivlcice-draft
 	git add -f docs/zpevnik_minivlcice_draft.pdf
 	git commit docs -m $(shell date '+"publishing draft %Y-%m-%d"')
 	git push
+
+
+minivlcice-diff-2019: minivlcice-final-print
+	./create_updated_pages_pdf.sh f39b6fc5fa8eb217f661ba6ecc0a0605ba970eba zpevnik_minivlcice.log zpevnik_minivlcice.pdf zpevnik_minivlcice_2x1_diff2019
+
+#	./create_updated_pages_pdf.sh f39b6fc5fa8eb217f661ba6ecc0a0605ba970eba zpevnik_minivlcice.log zpevnik_minivlcice_2x1.pdf zpevnik_minivlcice_2x1_diff2019.pdf
+
+
+
+
+# vygrepne nadpisy
+# git diff --name-only f39b6fc5fa8eb217f661ba6ecc0a0605ba970eba songs | xargs grep "begin{TEXT}"|sed 's/^.*TEXT}{\([^}(]\{0,10\}\).*}.*/\1/'|tr '\n' '|'|sed 's/|$//'
+#
+# pdfgrep -n "(${NADPISY})" zpevnik_minivlcice.pdf
+#
+# je ale potřeba se kouknout i na konec písničky pro případ vícestránkových písniček !!!
