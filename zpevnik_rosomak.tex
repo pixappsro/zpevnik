@@ -8,20 +8,45 @@
 
 
 
-\renewcommand{\ChFont}{\fontfamily{\sfdefault} \fontseries{bx}\fontshape{n}\fontsize{6mm}{0mm}\selectfont} 
+\renewcommand{\ChFont}{\fontfamily{\sfdefault} \fontseries{bx}\fontshape{n}\fontsize{6mm}{0mm}\selectfont}
+
+
+
 
 %%%%%%%%%%%%%%%%%
+\makeatletter
+
+\begingroup
+  \lccode`\~=`\& % allow using & without \&
+  \lowercase{\endgroup
+    \def~{$\flat$}%
+  }
+\let\AKORD\Ch
+
+\def\Ch{%
+ % \begingroup
+  \catcode`\&=\active
+  \AKORD
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%
+\usepackage{suffix} %asterisk versions
+
 \usepackage{enumitem,refcount}
 \newcommand{\NADPIS}[1]{\section{#1}}
 \newenvironment{TEXT}[1]
   {\NADPIS{#1}%
   \def\SLOKA{\item}
+  \WithSuffix\newcommand\SLOKA*{\item[]}
   \def\REFREN{\item[Ref.:]}
   \def\REFRENHRAJ{\item[Ref.]\,}
+  \def\INTERM{\item}
   \def\NL{\\*}
   \begin{enumerate}%
   }
   {\end{enumerate}}
+
 %%%%%%%%%%%%%%%%%
 
 
@@ -33,7 +58,7 @@
 %\fancyhf{} % smaže aktuální nastavení záhlaví a zápatí
 %\fancyfoot[c]{\bfseries\thepage}                               % zrušení čísel stránek
 %\renewcommand{\headrulewidth}{0pt} % tloušťka linky
-%\renewcommand{\footrulewidth}{3pt}   % patička 
+%\renewcommand{\footrulewidth}{3pt}   % patička
 %\addtolength{\headheight}{1.2pt}% prostor pro záhlaví
 %\fancypagestyle{plain}{
 %\fancyhead{} % na prázdných stránkách nechci záhlaví
@@ -79,7 +104,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{ifthen}
- 
+
 \newcommand{\newevenside}{
 	\ifthenelse{\isodd{\thepage}}{\newpage}{
 	\newpage
@@ -114,7 +139,7 @@
 \marginparwidth 0cm
 
 \oddsidemargin 5cm
-\evensidemargin 1cm 
+\evensidemargin 1cm
 
 
 \pagestyle{empty}
@@ -172,7 +197,7 @@
 \node at (165mm,-1.5mm) {\tiny ver.\yyyymmdddate\today\currenttime};
 \end{tikzpicture}
 \includegraphics[width=1.15\textwidth]{images/titulni.eps}
-\vfil\ 
+\vfil\
 
 %\end{titlepage}
 
@@ -408,6 +433,6 @@ NEPRODEJNÉ\,!}
 \pagestyle{empty}
 \mbox{}
 
-\tableofcontents 
+\tableofcontents
 
 \end{document}

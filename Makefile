@@ -33,6 +33,22 @@ publish-draft: minivlcice-draft
 minivlcice-diff-2019: minivlcice-final-print
 	./create_updated_pages_pdf.sh f39b6fc5fa8eb217f661ba6ecc0a0605ba970eba zpevnik_minivlcice.log zpevnik_minivlcice.pdf zpevnik_minivlcice_2x1_diff2019
 
+
+rosomak:
+	xelatex zpevnik_rosomak.tex
+	xelatex zpevnik_rosomak.tex
+	xelatex zpevnik_rosomak.tex
+
+
+
+
+
+
+
+
+
+
+
 #	./create_updated_pages_pdf.sh f39b6fc5fa8eb217f661ba6ecc0a0605ba970eba zpevnik_minivlcice.log zpevnik_minivlcice_2x1.pdf zpevnik_minivlcice_2x1_diff2019.pdf
 
 
