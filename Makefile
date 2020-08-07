@@ -33,12 +33,14 @@ publish-draft: minivlcice-draft
 minivlcice-diff-2019: minivlcice-final-print
 	./create_updated_pages_pdf.sh f39b6fc5fa8eb217f661ba6ecc0a0605ba970eba zpevnik_minivlcice.log zpevnik_minivlcice.pdf zpevnik_minivlcice_2x1_diff2019
 
+minivlcice-diff-2020: minivlcice-final-print
+	./create_updated_pages_pdf.sh 333dcd20b2bd501f27237442e4ee261c74c65d6a zpevnik_minivlcice.log zpevnik_minivlcice.pdf zpevnik_minivlcice_2x1_diff2020
+
 
 rosomak:
 	xelatex zpevnik_rosomak.tex
 	xelatex zpevnik_rosomak.tex
 	xelatex zpevnik_rosomak.tex
-
 
 
 
