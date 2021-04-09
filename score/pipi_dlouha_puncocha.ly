@@ -69,8 +69,8 @@ global = {
         \newSpacingSection
         \override Score.SpacingSpanner.spacing-increment = #0.4
 
-        f2 f c'4 a,2. bes8 a g f e4 g f a c,2
-        f2 f c'4 a,2. bes8 a g f e4 g f2 r
+        f2 f c'4 a2. bes8 a g f e4 g f a c,2
+        f2 f c'4 a2. bes8 a g f e4 g f2 r
       \bar "||"
       \newSpacingSection
   \revert Score.SpacingSpanner.spacing-increment
