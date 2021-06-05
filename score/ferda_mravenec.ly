@@ -34,7 +34,7 @@ global = {
      d:m
      g
      d:m
-     e:dim
+     d:m
      c
      a:7
      d:m
@@ -48,8 +48,8 @@ global = {
      d
      e
      d
-     g4
-     f4
+     g4.
+     f8
      g2
      
      
@@ -67,16 +67,16 @@ global = {
         d,2 r2
         d4 c b a
         a'8 f r4 r8 d c b 
-        a'8 e r4 r8 a4 b8 e,2 r2
+        a'8 a4. r8 a4 b8 e,2 r2
         
         e4 g8 g e4 cis
-        e8 d d e f4 c b2 r8 a'4 as8 
-        g2 r8 e g as 
-        a4. b8 a4 e 
-        g8 f f e  es4 b'8 a 
-        as4 e8 d( d) r8 b'8 a 
-        as4 e8 d( d) r8 b'8 a
-        as4 e8 d( d) r8 e f  g g4 f8 g2
+        e8 d d e f4 c b2 r4 a'8 gis 
+        g2 r8 e g gis 
+        r8 a4 b8 a4 e 
+        g8 f f e  dis4 b'8 a 
+        gis4 e8 d( d) r8 b'8 a 
+        gis4 e8 d( d) r8 b'8 a
+        gis4 e8 d( d) r8 e f  g g4 f8 g2
         %r1
         %r1
         %NEHOTOVE: c,8 r8 a' g r8 c, b r8 a' g r8 b, r8 a'  g r8 b,  c r8 c' g c, a' g b, c e g g e c b a g fis g
