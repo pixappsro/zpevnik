@@ -1,7 +1,7 @@
 
 prepare-minivlcice:
 	cd score;for noty in *.ly ; do \
-      lilypond -dbackend=eps $$noty ; \
+      lilypond --eps $$noty ; \
     done
 	xelatex zpevnik_minivlcice.tex
 	LC_ALL=cs_CZ.UTF-8 texlua songidx.lua minivlciceidx.sxd minivlciceidx.sbx
@@ -15,7 +15,7 @@ minivlcice-draft: prepare-minivlcice
 minivlcice-final-print: minivlcice
 	pdflatex zpevnik_minivlcice_2x1.tex
 	echo showpage | ps2pdf -sPAPERSIZE=a4 - blank_a4.pdf
-	pdftk A=zpevnik_minivlcice.pdf B=blank_a4.pdf cat B1 A1-end output - | pdfnup --nup 2x2 --no-landscape --scale 0.95 --outfile 'zpevnik_minivlcice_nahledy.pdf'  '/dev/stdin'
+	pdftk A=zpevnik_minivlcice.pdf B=blank_a4.pdf cat B1 A1-end output - | pdfjam --nup 2x2 --no-landscape --scale 0.95 --outfile 'zpevnik_minivlcice_nahledy.pdf'  '/dev/stdin'
 
 minivlcice-publish: minivlcice
 	cp zpevnik_minivlcice.pdf docs/zpevnik_minivlcice.pdf
@@ -35,6 +35,11 @@ minivlcice-diff-2019: minivlcice-final-print
 
 minivlcice-diff-2020: minivlcice-final-print
 	./create_updated_pages_pdf.sh 333dcd20b2bd501f27237442e4ee261c74c65d6a zpevnik_minivlcice.log zpevnik_minivlcice.pdf zpevnik_minivlcice_2x1_diff2020
+
+minivlcice-diff-2021: minivlcice-final-print
+	./create_updated_pages_pdf.sh 5cfad43f80254c4054373ebde0e4e52fb8e7a84f zpevnik_minivlcice.log zpevnik_minivlcice.pdf zpevnik_minivlcice_2x1_diff2021
+
+
 
 
 rosomak:
