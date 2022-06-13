@@ -27,10 +27,11 @@ do
   [ $((strana%2)) -eq 0 ] && echo $((strana-1))
   echo $strana
   [ $((strana%2)) -eq 1 ] && echo $((strana+1))
-done |sort|uniq
+done |sort -n |uniq
 `
 
 prvni_stranka=`echo $stranky_tisk | tr " " "\n" | head -n 1`
 dalsi_stranky=`echo $stranky_tisk | tr " " "\n" | tail -n +2| tr "\n" ","| sed "s/,$//"`
 
+echo "pdflatex -jobname $pdfout \"\def\inputfile{$pdfin} \def\dalsistrany{$dalsi_stranky} \def\prvnistrana{$prvni_stranka} \input{zpevnik_template_2x1.tex}\""
 pdflatex -jobname $pdfout "\def\inputfile{$pdfin} \def\dalsistrany{$dalsi_stranky} \def\prvnistrana{$prvni_stranka} \input{zpevnik_template_2x1.tex}"
