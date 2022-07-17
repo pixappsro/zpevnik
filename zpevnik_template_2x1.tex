@@ -57,6 +57,24 @@ pagecommand={
 \end{tikzpicture}%
 }]{\inputfile}
 
+
+\ifx\dalsistrany\undefined
+\foreach \n in {2,...,\value{pdfpages}}{
+  \includepdf[
+  nup=2x1,
+  pages={\n ,\n },
+  %fitpaper=true
+  pagecommand={
+\pagestyle{empty}
+\ifthenelse{\isodd{\n}}%
+    {\begin{tikzpicture}[remember picture,overlay]%
+  \node[rotate=90] at ($(current page.west)+(8mm,0mm)$) {\scriptsize\today};%
+  \node[rotate=90] at ($(current page.center)+(8mm,0mm)$) {\scriptsize\today};%
+\end{tikzpicture}%
+}{}
+}]{\inputfile}
+}
+\else
 \foreach \n in \dalsistrany{ % \dalsistrany
   \includepdf[
   nup=2x1,
@@ -72,5 +90,6 @@ pagecommand={
 }{}
 }]{\inputfile}
 }
+\fi
 
 \end{document}

@@ -18,6 +18,10 @@ pdfout=$4
 zmenene_song_soubory=`git diff --name-only $commit songs`
 
 nadpisy=`echo "$zmenene_song_soubory" | xargs grep "begin{TEXT}"|sed 's/^.*TEXT}{\([^}(]\{0,10\}\).*}.*/\1/'|tr '\n' '|'|sed 's/|$//'`
+## TODO grep '^\s*\\PISNICKA' zpevnik_minivlcice.tex |nl
+## cisla_pisni=``
+##
+
 
 stranky_s_nadpisy=`pdfgrep -n "(${nadpisy})" $pdfin | egrep "^[0-9]*:\s*($nadpisy)"| sed "s/:.*//"|sort |uniq`
 
